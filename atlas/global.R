@@ -16,6 +16,7 @@ library(googlesheets4)
 library(partykit)
 library(bs4Dash)
 library(waiter)
+library(qs)
 
 shinyOptions(cache = cachem::cache_disk("cache"))
 
@@ -150,9 +151,11 @@ make_summary_plot <- function(dataset, lsa_map_number, selection, color_num, map
   #ggsave(plot = plot_row, filename = paste0(map_title, ".png"), units = "cm", width = 22)
   #ggsave(plot = p, filename = paste0(map_title, ".pdf"), units = "cm", width = 22)
   #ggsave(plot = plot_row, filename = paste0(map_title, "_mat_LSA.pdf"), units = "cm", width = 28)
-  #saveRDS(plot_row, file = paste0(map_title, ".RDS"))
   
-  print(plot_row)
+  #saveRDS(plot_row, file = paste0(map_title, "_Iwwerbleckskaart.RDS"))
+  qsave(plot_row, file = paste0(map_title, "_Iwwerbleckskaart.qs"))
+  #  print(plot_row)
+  
 }
 
 make_summary_plot_m <- memoise(make_summary_plot)

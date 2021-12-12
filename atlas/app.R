@@ -6,6 +6,11 @@
 #
 #    http://shiny.rstudio.com/
 #
+
+##
+## Diese App ist zum Generieren der Karten!!!
+##
+
 source("global.R")
 
 ## UI
@@ -44,7 +49,7 @@ ui <- function(request) {
       #   # onInitialize = I('function() { this.setValue(""); }')
       #   #)
       # ),
-      selectizeInput("kaart", "Kaart", choices = make_choices())
+      selectInput("kaart", "Kaart", choices = make_choices(), selectize = FALSE, size =20)
 
       #tags$p("Note: All nutrient information is based on the Canadian Nutrient File. Nutrient amounts do not account for variation in nutrient retention and yield losses of ingredients during preparation. % daily values (DV) are taken from the Table of Daily Values from the Government of Canada. This data should not be used for nutritional labeling.")
     ),
@@ -147,8 +152,10 @@ server <- function(input, output, session) {
     # run prepare function, returns plot_data as global
     data_fon <- prepare_data(variable, "Gemeng_alt", selection)
     
-    make_summary_plot(data_fon, lsa_map_number, selection, length(selection), map_title, item_number, item_text)
+    #qread(paste0(map_title, "_Iwwerbleckskaart.qs"))
     
+    make_summary_plot(data_fon, lsa_map_number, selection, length(selection), map_title, item_number, item_text)
+
   })
   
   ### Variantekaarten
@@ -199,13 +206,17 @@ server <- function(input, output, session) {
       
       p <- cowplot::plot_grid(plotlist = plots$plots, nrow = round(length(plots$plots)/3))
       
+      qsave(p, file = paste0(map_title, "_Variantekaarten.qs"))
+      
       #ggsave(plot = p, filename = paste0("variantekaart_", ".pdf"), units = "cm", width = 22)
-      p
+      #p
     }
     
     all_maps(data_fon)
-  }) %>%
-    bindCache(input$kaart)
+    
+    #qread(paste0(map_title, "_Variantekaarten.qs"))
+    
+  })
   
   output$plotAlter <- renderPlot({
     
