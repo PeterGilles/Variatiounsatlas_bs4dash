@@ -1,0 +1,13 @@
+name: Variatiounsatlas_dev
+title: Variatiounsatlas_dev
+username:
+account: petergill
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5050718
+bundleId: 5359174
+url: https://petergill.shinyapps.io/variatiounsatlas_dev/
+when: 1639218209.42077
+lastSyncTime: 1639218209.42078
+asMultiple: FALSE
+asStatic: FALSE
