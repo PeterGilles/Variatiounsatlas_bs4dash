@@ -6,6 +6,11 @@
 #
 #    http://shiny.rstudio.com/
 #
+
+##
+# App with links to prepared plots for maps
+#
+
 source("global.R")
 
 ## UI
@@ -147,11 +152,13 @@ server <- function(input, output, session) {
     
     # run prepare function, returns plot_data as global
     #data_fon <- prepare_data(variable, "Gemeng_alt", selection)
-    
-    download.file(url = paste0("https://luxappsdata.uni.lu/qs_files_variatiounsatlas/", variable, "_Iwwerbleckskaart.qs"),
-                  destfile = "temp_map1.qs")
-    qread("temp_map1.qs")
-    
+
+        # https://luxappsdata.uni.lu/qs_files_variatiounsatlas/
+    # download.file(url = paste0("https://github.com/PeterGilles/Variatiounsatlas_bs4dash/blob/master/atlas/", variable, "_Iwwerbleckskaart.qs?raw=true"),
+    #               destfile = "temp_map1.qs")
+    # qread("temp_map1.qs")
+    qread(paste0(variable, "_Iwwerbleckskaart.qs"))
+      
     #make_summary_plot(data_fon, lsa_map_number, selection, length(selection), map_title, item_number, item_text)
     
   })
@@ -212,9 +219,10 @@ server <- function(input, output, session) {
     
     #all_maps(data_fon)
     
-    download.file(url = paste0("https://luxappsdata.uni.lu/qs_files_variatiounsatlas/", variable, "_Variantekaarten.qs"),
-                  destfile = "temp_map2.qs")
-    qread("temp_map2.qs")
+    # download.file(url = paste0("https://github.com/PeterGilles/Variatiounsatlas_bs4dash/blob/master/atlas/", variable, "_Variantekaarten.qs?raw=true"),
+    #               destfile = "temp_map2.qs")
+    # qread("temp_map2.qs")
+    qread(paste0(variable, "_Variantekaarten.qs"))
     
   })
   

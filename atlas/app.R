@@ -8,7 +8,7 @@
 #
 
 ##
-## Diese App ist zum Generieren der Karten!!!
+## Diese App ist auch zum Generieren der Karten!!!
 ##
 
 source("global.R")
@@ -26,8 +26,8 @@ ui <- function(request) {
       #color = "primary",
       #href = "https://adminlte.io/themes/v3",
       image = "logo.png"
+    )
     ),
-    titleWidth = 500),
     
     dashboardSidebar(
       # sidebarUserPanel(
@@ -36,6 +36,7 @@ ui <- function(request) {
       # ),
       collapsed = FALSE,
       skin = "light",
+      width = 500,
       # selectInput(
       #   inputId = "map_category",
       #   label = "1. Kategorie",
@@ -62,7 +63,11 @@ ui <- function(request) {
         fluidRow(
           box(title = "Iwwerbléckskaart", solidHeader = T,
               width = 12, collapsible = T, status = "primary",
-              plotOutput("Iwwerbléckskaart", height = "700px"))),
+              shinycssloaders::withSpinner(
+                plotOutput("Iwwerbléckskaart", height = "700px")
+                )
+              )
+          ),
         fluidRow(
           box(title = "Variantekaarten", solidHeader = T,
               width = 12, collapsible = T, status = "primary",
@@ -206,10 +211,10 @@ server <- function(input, output, session) {
       
       p <- cowplot::plot_grid(plotlist = plots$plots, nrow = round(length(plots$plots)/3))
       
-      qsave(p, file = paste0(map_title, "_Variantekaarten.qs"))
+      #qsave(p, file = paste0(map_title, "_Variantekaarten.qs"))
       
       #ggsave(plot = p, filename = paste0("variantekaart_", ".pdf"), units = "cm", width = 22)
-      #p
+      p
     }
     
     all_maps(data_fon)

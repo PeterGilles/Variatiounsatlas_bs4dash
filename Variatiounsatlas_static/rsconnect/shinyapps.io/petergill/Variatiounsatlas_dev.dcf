@@ -5,9 +5,9 @@ account: petergill
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 5050718
-bundleId: 5363513
+bundleId: 5365833
 url: https://petergill.shinyapps.io/variatiounsatlas_dev/
-when: 1639341130.68232
-lastSyncTime: 1639341130.68233
+when: 1639386497.95909
+lastSyncTime: 1639386497.9591
 asMultiple: FALSE
 asStatic: FALSE

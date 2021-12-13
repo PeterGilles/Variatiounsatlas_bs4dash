@@ -20,7 +20,7 @@ library(qs)
 
 shinyOptions(cache = cachem::cache_disk("cache"))
 
-preloader <- list(html = tagList(spin_1(), "Loading ..."), color = "#343a40")
+preloader <- list(html = tagList(spin_1(), "Lueden ..."), color = "#343a40")
 
 ## Prepare stuff
 # Polygoner fir Kanonten a Gemengen
@@ -153,8 +153,8 @@ make_summary_plot <- function(dataset, lsa_map_number, selection, color_num, map
   #ggsave(plot = plot_row, filename = paste0(map_title, "_mat_LSA.pdf"), units = "cm", width = 28)
   
   #saveRDS(plot_row, file = paste0(map_title, "_Iwwerbleckskaart.RDS"))
-  qsave(plot_row, file = paste0(map_title, "_Iwwerbleckskaart.qs"))
-  #  print(plot_row)
+  #qsave(plot_row, file = paste0(map_title, "_Iwwerbleckskaart.qs"))
+  print(plot_row)
   
 }
 
@@ -286,11 +286,11 @@ plot_datatable <- function(variable) {
               dplyr::select(-recordingURL) %>%
               dplyr::select(Variant, Lauschtert, Dialektgebitt, Gemeng = Gemeng_alt, Kanton),
             escape = FALSE,
-            height = 600,
+            #height = 600,
             extensions = 'Scroller',
             filter = 'top', options = list(
               deferRender = TRUE,
-              scrollY = 200,
+              scrollY = 600,
               scroller = TRUE,
               autoWidth = TRUE
             ))
